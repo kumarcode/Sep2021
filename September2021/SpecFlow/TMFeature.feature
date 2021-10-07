@@ -15,11 +15,10 @@ Scenario: create time and material record with valid details
 Scenario Outline: edit time and material record with valid details
 	Given I logged into turn up portal successfully
 	And I navigate to time and material page
-	When I update '<Description>' on an existing time and material record
+	When I update '<Description>' '<TypeCode>' on an existing time and material record
 	Then the record should have the updated '<Description>'
 
 	Examples: 
-	| Description | 
-	| apple    |
-	| 123      |
-	| ca!@#$   |
+	| Description | TypeCode |
+	| apple       | T        |
+	| 123         | M        |

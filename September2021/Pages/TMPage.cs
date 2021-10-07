@@ -80,7 +80,7 @@ namespace September2021.Pages
             return newTypeCode.Text;
         }
 
-        public void EditTM(IWebDriver driver, string p0)
+        public void EditTM(IWebDriver driver, string p0, string typeCode)
         {
             // Go to the last page where new record created will be
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
@@ -100,9 +100,20 @@ namespace September2021.Pages
                 typeCodeDropdown1.Click();
                 Thread.Sleep(2000);
 
-                IWebElement selectMaterial = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[1]"));
-                selectMaterial.Click();
-                Thread.Sleep(2000);
+                if (typeCode == "M")
+                {
+                    IWebElement selectMaterial = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[1]"));
+                    selectMaterial.Click();
+                    Thread.Sleep(2000);
+                }
+                else
+                {
+                    IWebElement selectTime = driver.FindElement(By.XPath("//*[@id='TypeCode_listbox']/li[2]"));
+                    selectTime.Click();
+                    Thread.Sleep(2000);
+                }
+
+
 
                 // Click on "Code" from Textbox and set the code
                 IWebElement codeTextBox1 = driver.FindElement(By.Id("Code"));
