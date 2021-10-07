@@ -45,17 +45,14 @@ namespace September2021.Pages
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
             goToLastPageButton.Click();
 
-            // Assertion
-            IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-            IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-            IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+            //// Assertion
+            //IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            //IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-            // Assertion
-            Assert.That(newCode.Text == "September2021", "Actual Code and expected code do not match.");
-            Assert.That(newTypeCode.Text == "T", "Actual TypeCode and expected tyecode do not match.");
-            Assert.That(newDescription.Text == "September2021", "Actual Description and expected description do not match.");
-            Assert.That(newPrice.Text == "$12.00", "Actual Price and expected price do not match.");
+            //// Assertion
+            //Assert.That(newTypeCode.Text == "T", "Actual TypeCode and expected tyecode do not match.");
+            //Assert.That(newDescription.Text == "September2021", "Actual Description and expected description do not match.");
+            //Assert.That(newPrice.Text == "$12.00", "Actual Price and expected price do not match.");
 
 
             // option 2
@@ -70,7 +67,20 @@ namespace September2021.Pages
             //}
         }
 
-        public void EditTM(IWebDriver driver)
+        public string GetCode(IWebDriver driver)
+        {
+            IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+
+            return newCode.Text;
+        }
+
+        public string GetTypeCode(IWebDriver driver)
+        {
+            IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+            return newTypeCode.Text;
+        }
+
+        public void EditTM(IWebDriver driver, string p0)
         {
             // Go to the last page where new record created will be
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
@@ -103,7 +113,7 @@ namespace September2021.Pages
                 // Click on "Description" from Textbox and set the description
                 IWebElement descriptionTextBox1 = driver.FindElement(By.Id("Description"));
                 descriptionTextBox1.Clear();
-                descriptionTextBox1.SendKeys("Automated Script1 is changed");
+                descriptionTextBox1.SendKeys(p0);
                 Thread.Sleep(2000);
 
                 // Click on "Price per unit" textbox and clear the price
@@ -131,16 +141,16 @@ namespace September2021.Pages
                 IWebElement goToLastPageBtn1 = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[4]/a[4]/span"));
                 goToLastPageBtn1.Click();
 
-                IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
-                IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
-                IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
-                IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+                //IWebElement newCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]"));
+                //IWebElement newTypeCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[2]"));
+                //IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+                //IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
 
-                // Assertion
-                Assert.That(newCode.Text == "Automated Script1", "Actual Code and expected code do not match.");
-                Assert.That(newTypeCode.Text == "M", "Actual TypeCode and expected tyecode do not match.");
-                Assert.That(newDescription.Text == "Automated Script1 is changed", "Actual Description and expected description do not match.");
-                Assert.That(newPrice.Text == "$170.00", "Actual Price and expected price do not match.");
+                //// Assertion
+                //Assert.That(newCode.Text == "Automated Script1", "Actual Code and expected code do not match.");
+                //Assert.That(newTypeCode.Text == "M", "Actual TypeCode and expected tyecode do not match.");
+                //Assert.That(newDescription.Text == "Automated Script1 is changed", "Actual Description and expected description do not match.");
+                //Assert.That(newPrice.Text == "$170.00", "Actual Price and expected price do not match.");
             }
             else
             {
@@ -149,6 +159,11 @@ namespace September2021.Pages
 
         }
 
+        public string GetDescription(IWebDriver driver)
+        {
+            IWebElement newDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]"));
+            return newDescription.Text;
+        }
         public void DeleteTM(IWebDriver driver)
         {
             // Go to the last page where edited record will be
