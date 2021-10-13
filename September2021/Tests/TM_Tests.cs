@@ -33,7 +33,7 @@ namespace September2021
 
             // Edit time
             TMPage tmPageObj = new TMPage();
-            tmPageObj.EditTM(driver, "dummy");
+            tmPageObj.EditTM(driver, "dummy description", "M");
         }
 
         [Test, Order (3), Description("Check if user is able to delete Material record")]
