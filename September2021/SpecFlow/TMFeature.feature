@@ -3,16 +3,16 @@
 	I would like to create, edit and delete time and material records
 	So that I can manage employees time and materials successfully
 
-@tmtest @regression
-Scenario: create time and material record with valid details
+@tmtest @regression @one
+Scenario: 01 create time and material record with valid details
 	Given I logged into turn up portal successfully
 	And I navigate to time and material page
 	When I create time and material record
 	Then the record should be created successfully
 
 
-@tmtest @regression
-Scenario Outline: edit time and material record with valid details
+@tmtest @regression @two
+Scenario Outline: 02 edit time and material record with valid details
 	Given I logged into turn up portal successfully
 	And I navigate to time and material page
 	When I update '<Description>' '<TypeCode>' on an existing time and material record
